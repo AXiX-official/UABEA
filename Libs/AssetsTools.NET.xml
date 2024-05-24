@@ -320,6 +320,16 @@
             Engine version. This is the specific version string being used. For example, "2019.4.2f1"
             </summary>
         </member>
+        <member name="P:AssetsTools.NET.AssetBundleHeader.PrasedEngineVersion">
+            <summary>
+            Parsed engine version.For example, "2019.4.2f1" would be [2019, 4, 2, 1]
+            </summary>
+        </member>
+        <member name="P:AssetsTools.NET.AssetBundleHeader.NeedAlignAfterHeader">
+            <summary>
+            Weather align after header. For version 2019.4.x some of them has Version 6 but with align after header.
+            </summary>
+        </member>
         <member name="P:AssetsTools.NET.AssetBundleHeader.FileStreamHeader">
             <summary>
             Header for bundles with a UnityFS Signature.

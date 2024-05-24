@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UABEAvalonia.Forms;
 
 namespace UABEAvalonia
 {
@@ -165,6 +166,10 @@ namespace UABEAvalonia
 
                 if (AssetBundleUtil.IsBundleDataCompressed(bundleInst.file))
                 {
+                    if (AssetBundleUtil.IsUnityCNEncrypted(bundleInst.file))
+                    {
+                        await AskUnityCNKey(bundleInst);
+                    }
                     AskLoadCompressedBundle(bundleInst);
                 }
                 else
@@ -789,6 +794,12 @@ namespace UABEAvalonia
             {
                 return null;
             }
+        }
+
+        private async Task AskUnityCNKey(BundleFileInstance bundleInst)
+        {
+            string key = await KeyInputDialog.ShowDialog(this);
+            bundleInst.SetUnityCNKey(key);
         }
 
         private async void AskLoadCompressedBundle(BundleFileInstance bundleInst)

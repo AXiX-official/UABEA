@@ -16,5 +16,10 @@ namespace UABEAvalonia
         {
             return bundle.BlockAndDirInfo.BlockInfos.Any(inf => inf.GetCompressionType() != 0);
         }
+        
+        public static bool IsUnityCNEncrypted(AssetBundleFile bundle)
+        {
+            return bundle.Header.DataIsEncrypted;
+        }
     }
 }

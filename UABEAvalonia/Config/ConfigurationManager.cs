@@ -60,5 +60,16 @@ namespace UABEAvalonia
                 ConfigurationManager.SaveConfig();
             }
         }
+
+        private string _lastUnityCNKey;
+        public string LastUnityCNKey
+        {
+            get => _lastUnityCNKey;
+            set
+            {
+                _lastUnityCNKey = value;
+                ConfigurationManager.SaveConfig();
+            }
+        }
     }
 }
