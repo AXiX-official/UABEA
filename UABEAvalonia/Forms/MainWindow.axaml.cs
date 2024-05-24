@@ -168,7 +168,10 @@ namespace UABEAvalonia
                 {
                     if (AssetBundleUtil.IsUnityCNEncrypted(bundleInst.file))
                     {
-                        await AskUnityCNKey(bundleInst);
+                        var key = await AskUnityCNKey(bundleInst);
+                        if (string.IsNullOrEmpty(key))
+                            return;
+                        bundleInst.SetUnityCNKey(key);
                     }
                     AskLoadCompressedBundle(bundleInst);
                 }
@@ -796,10 +799,9 @@ namespace UABEAvalonia
             }
         }
 
-        private async Task AskUnityCNKey(BundleFileInstance bundleInst)
+        private async Task<string?> AskUnityCNKey(BundleFileInstance bundleInst)
         {
-            string key = await KeyInputDialog.ShowDialog(this);
-            bundleInst.SetUnityCNKey(key);
+            return await KeyInputDialog.ShowDialog(this);
         }
 
         private async void AskLoadCompressedBundle(BundleFileInstance bundleInst)
